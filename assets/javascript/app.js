@@ -55,10 +55,16 @@ var game = {
   }
 }
 
-// START OF GAME -----------------------------------------------------------------------------------
 
-  // - FUNCTION - WHEN START BUTTON IS CLICKED
+// START OF GAME -----------------------------------------------------------------------------------
+    // WHEN START BUTTON IS CLICKED, CALL THE startGame FUNCTION
     $("#startButton").on('click', function() {
+      startGame;
+      console.log("start button clicked");
+    })
+
+    // FUNCTION OF START GAME 
+    function startGame() {
 
       // alert the user how much time they have for trivia game
         alert("You have 2 minutes to answer all the questions. Good Luck!");
@@ -77,17 +83,20 @@ var game = {
         // sort through my questions array
         for(var i = 0; i < myQuestions.length; i++){
 
-        // append the questions to the div 
-        $("#smwrapper").append('<h4>' + myQuestions[i].question + '</h4>');
+          // append the questions to the div 
+          $("#smwrapper").append('<h4>' + myQuestions[i].question + '</h4>');
 
-        // create a loop to go through all the answers 
-        for(var j = 0; j < myQuestions[i].answers.length; j++){
+          // create a loop to go through all the answers 
+          for(var j = 0; j < myQuestions[i].answers.length; j++){
 
             // append the answers and give them a radio button to collect an input(or answer) from the user
             $("#smwrapper").append("<input type='radio' name='question-"+i+"' value='"+myQuestions[i].answers[j]+"'>" +myQuestions[i].answers[j])
-            }
+            };
         } //end for loop 
 
-      }); // END OF THE CLICK START BUTTON FUNCTION
+      }; // END OF startGame FUNCTION
+
+
+
 
 }) // END OF THE DOCUMENT READY FUNCTION
