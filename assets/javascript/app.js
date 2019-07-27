@@ -6,32 +6,32 @@ $(document).ready(function(){
 
 var myQuestions = [
 {
-question: "What year was Shakespeare born?",
-answers: ["1616", "1564", "1732", "1501"],
-correctAnswer: "1564"
+  question: "What year was Shakespeare born?",
+  answers: ["1616", "1564", "1732", "1501"],
+  correctAnswer: "1564"
 },
 {
-question: "Who was Shakespeare's Wife?",
-answers: ['Margaret Thatcher', 'Anne Hathaway','Halle Berry','Elizabeth Townsend'],
-   correctAnswer: 'Anne Hathaway'
-},
-
-{
-question: "What was Shakespeare's first play?",
-answers: ['Hamlet', 'Macbeth', 'Titus Andronicus','Timon of Athens'],
-correctAnswer: 'Titus Andronicus'
+  question: "Who was Shakespeare's Wife?",
+  answers: ['Margaret Thatcher', 'Anne Hathaway','Halle Berry','Elizabeth Townsend'],
+  correctAnswer: 'Anne Hathaway'
 },
 
 {
-question: "How many Greek plays has Shakespeare written?",
-answers: ['3', '7', '1', '4'],
-correctAnswer: '3'
+  question: "What was Shakespeare's first play?",
+  answers: ['Hamlet', 'Macbeth', 'Titus Andronicus','Timon of Athens'],
+  correctAnswer: 'Titus Andronicus'
 },
 
 {
-question: "What was William Shakespeare's father's profession?",
-answers: ['priest', 'book binder','cobbler', 'glove maker'],
-correctAnswer: 'glove maker'
+  question: "How many Greek plays has Shakespeare written?",
+  answers: ['3', '7', '1', '4'],
+  correctAnswer: '3'
+},
+
+{
+  question: "What was William Shakespeare's father's profession?",
+  answers: ['priest', 'book binder','cobbler', 'glove maker'],
+  correctAnswer: 'glove maker'
 },
 ]; 
 
@@ -42,9 +42,12 @@ correctAnswer: 'glove maker'
 var game = {
   correct: 0, 
   incorrect: 0,
-  counter: 20, 
+  counter: 120, 
+  //countdown function
   countdown: function() {
+    // decrease the amount of time by 1
     game.counter--;
+    // add time to html timer 
     $('#timer').html(game.counter);
  
     // if the timer runs out, then run the function "game done" to trigger end of game
@@ -101,7 +104,7 @@ var game = {
 
   // FUNCTION OF DONE GAME doneGame
   function doneGame() { 
-    
+
     $.each($("input[name='question-0']:checked"), function(){
       if ($(this).val()==myQuestions[0].correctAnswer) {
         game.correct++;
@@ -117,21 +120,21 @@ var game = {
         game.incorrect++;
       }
     });
-    $.each($('input[name="question-2]":checked'), function(){
+    $.each($("input[name='question-2']:checked"), function(){
       if ($(this).val()==myQuestions[2].correctAnswer) {
         game.correct++;
       } else {
         game.incorrect++;
       }
     });
-    $.each($('input[name="question-3]":checked'), function(){
+    $.each($("input[name='question-3']:checked"), function(){
       if ($(this).val()==myQuestions[3].correctAnswer) {
         game.correct++;
       } else {
         game.incorrect++;
       }
     });
-    $.each($('input[name="question-4]":checked'), function(){
+    $.each($("input[name='question-4']:checked"), function(){
       if ($(this).val()==myQuestions[4].correctAnswer) {
         game.correct++;
       } else {
@@ -139,17 +142,28 @@ var game = {
       }
     });
 
-    this.result();
 
+    var totalQuestions = myQuestions.length;
+    var totalincorrect = game.incorrect;
+    var totalcorrect = game.correct;
+    var unansweredTotal = totalQuestions - (totalincorrect + totalcorrect);
+    console.log("unanswered global : " + unansweredTotal);
+  
+    result( x = unansweredTotal );
+
+    function result(x) {
+      clearInterval(timer);
+      $("#smwrapper h2").remove();
+      $("#smwrapper").html("<h2> All done </h2>");
+      $("#smwrapper").append("<h3> Correct Answer: " + game.correct +  "</h3>");
+      $("#smwrapper").append("<h3> Incorrect Answer: " + game.incorrect +  "</h3>");
+      $("#smwrapper").append("<h3> Unanswered: " + x + "</h3>");
+      console.log("questions" + myQuestions.length);
+      console.log("incorrect" + game.incorrect);
+      console.log("correct" + game.correct);
+    }
   } // END OF doneGame FUNCTION
 
-  function result() {
-    clearInterval(timer);
-    $("#smwrapper h2").remove();
-    $("#smwrapper").html("<h2> All done </h2>");
-    $("#smwrapper").append("<h3> Correct Answer: " + this.correct +  "</h3>");
-    $("#smwrapper").append("<h3> Incorrect Answer: " + this.incorrect +  "</h3>");
-    $("#smwrapper").append("<h3> Unanswered: " + myQuestions.length-(this.incorrect + this.correct) + "</h3>");
-  }
+
 
 }) // END OF THE DOCUMENT READY FUNCTION
