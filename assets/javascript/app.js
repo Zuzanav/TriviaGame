@@ -42,7 +42,7 @@ correctAnswer: 'glove maker'
 var game = {
   correct: 0, 
   incorrect: 0,
-  counter: 120, 
+  counter: 20, 
   countdown: function() {
     game.counter--;
     $('#timer').html(game.counter);
@@ -50,20 +50,21 @@ var game = {
     // if the timer runs out, then run the function "game done" to trigger end of game
       if(game.counter<= 0){
         console.log("Time is up!");
-        //game.done();
+        doneGame();
     }
   }
 }
 
 
 // START OF GAME -----------------------------------------------------------------------------------
+
     // WHEN START BUTTON IS CLICKED, CALL THE startGame FUNCTION
     $("#startButton").on('click', function() {
-      startGame;
+      startGame();
       console.log("start button clicked");
     })
 
-    // FUNCTION OF START GAME 
+    // FUNCTION OF START OF GAME 
     function startGame() {
 
       // alert the user how much time they have for trivia game
@@ -96,7 +97,59 @@ var game = {
 
       }; // END OF startGame FUNCTION
 
+// END OF GAME -----------------------------------------------------------------------------------
 
+  // FUNCTION OF DONE GAME doneGame
+  function doneGame() { 
+    
+    $.each($("input[name='question-0']:checked"), function(){
+      if ($(this).val()==myQuestions[0].correctAnswer) {
+        game.correct++;
+      } else {
+        game.incorrect++;
+      }
+    });
 
+    $.each($("input[name='question-1']:checked"), function(){
+      if ($(this).val()==myQuestions[1].correctAnswer) {
+        game.correct++;
+      } else {
+        game.incorrect++;
+      }
+    });
+    $.each($('input[name="question-2]":checked'), function(){
+      if ($(this).val()==myQuestions[2].correctAnswer) {
+        game.correct++;
+      } else {
+        game.incorrect++;
+      }
+    });
+    $.each($('input[name="question-3]":checked'), function(){
+      if ($(this).val()==myQuestions[3].correctAnswer) {
+        game.correct++;
+      } else {
+        game.incorrect++;
+      }
+    });
+    $.each($('input[name="question-4]":checked'), function(){
+      if ($(this).val()==myQuestions[4].correctAnswer) {
+        game.correct++;
+      } else {
+        game.incorrect++;
+      }
+    });
+
+    this.result();
+
+  } // END OF doneGame FUNCTION
+
+  function result() {
+    clearInterval(timer);
+    $("#smwrapper h2").remove();
+    $("#smwrapper").html("<h2> All done </h2>");
+    $("#smwrapper").append("<h3> Correct Answer: " + this.correct +  "</h3>");
+    $("#smwrapper").append("<h3> Incorrect Answer: " + this.incorrect +  "</h3>");
+    $("#smwrapper").append("<h3> Unanswered: " + myQuestions.length-(this.incorrect + this.correct) + "</h3>");
+  }
 
 }) // END OF THE DOCUMENT READY FUNCTION
