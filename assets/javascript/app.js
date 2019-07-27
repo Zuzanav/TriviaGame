@@ -1,6 +1,16 @@
 $(document).ready(function(){ 
+/* NOTE TO TA WHO WILL REVIEW THIS:
+I did not get a chance to add more questions, or style it as I was
+so focused on functionality and getting this to work. I also
+did not get a chance to update my portfolio, so I apologize you will 
+only get my github links this week again. 
 
-//========================================================================
+I will return to this assignment at a later time to fix the styling and 
+update my portfolio. 
+
+*/
+
+  //========================================================================
 
 // QUESTIONS & ANSWERS & CORRECT ANSWER
 
