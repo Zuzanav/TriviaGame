@@ -10,6 +10,7 @@ Test your Shakespeare knowledge with this lightning-round trivia game. When read
 ## Technologies Used 
 - Javascript
 - jQuery
+- Bootstrap
 - CSS
 - HTML
 
