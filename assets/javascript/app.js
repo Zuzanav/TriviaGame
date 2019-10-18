@@ -74,7 +74,7 @@ var myQuestions = [
 var game = {
   correct: 0, 
   incorrect: 0,
-  counter: 5, 
+  counter: 120, 
   //countdown function
   countdown: function() {
     // decrease the amount of time by 1
@@ -103,7 +103,7 @@ var game = {
     function startGame() {
 
       // alert the user how much time they have for trivia game
-        //alert("You have 2 minutes to answer all the questions. Good Luck!");
+      alert("You have 2 minutes to answer all the questions. Good Luck!");
       
         // TIMER ---------------------------------------------------------------------------------
         // start the timer 
