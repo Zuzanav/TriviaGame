@@ -1,16 +1,6 @@
 $(document).ready(function(){ 
-/* NOTE TO TA WHO WILL REVIEW THIS:
-I did not get a chance to add more questions, or style it as I was
-so focused on functionality and getting this to work. I also
-did not get a chance to update my portfolio, so I apologize you will 
-only get my github links this week again. 
 
-I will return to this assignment at a later time to fix the styling and 
-update my portfolio. 
-
-*/
-
-  //========================================================================
+//========================================================================
 
 // QUESTIONS & ANSWERS & CORRECT ANSWER
 
@@ -40,9 +30,41 @@ var myQuestions = [
 
 {
   question: "What was William Shakespeare's father's profession?",
-  answers: ['priest', 'book binder','cobbler', 'glove maker'],
-  correctAnswer: 'glove maker'
+  answers: ['Priest', 'Book Binder','Cobbler', 'Glove Maker'],
+  correctAnswer: 'Glove Maker'
 },
+
+{
+  question: "How many plays did Shakespeare write, that we know of?",
+  answers: ['15', '37', '42', '31'],
+  correctAnswer: '37'
+},
+
+{
+  question: "What condition does Othello live with?",
+  answers: ['Schizophrenia', 'Syphilis', 'Depression', 'Epilepsy'],
+  correctAnswer: 'Epilepsy'
+},
+
+{
+  question: "What play is this famous line from? 'If you prick us, do we not bleed?'",
+  answers: ['Merchant of Venice', 'Macbeth', 'Twelth Night', 'Othello'],
+  correctAnswer: 'Merchant of Venice'
+},
+
+{
+  question: "How does Lady Macbeth learn of her husband's first meeting with the witches?",
+  answers: ['He tells her in person', 'Via a letter', 'Through a dream', 'Banquo tells her'],
+  correctAnswer: 'Via a letter'
+},
+
+{
+  question: "Which of these plays, while not historical, is loosely based on historical events?",
+  answers: ['The Tempest', 'Much Ado About Nothing', 'Macbeth', 'Romeo and Juliet'],
+  correctAnswer: 'Macbeth'
+},
+
+
 ]; 
 
 //========================================================================
@@ -52,7 +74,7 @@ var myQuestions = [
 var game = {
   correct: 0, 
   incorrect: 0,
-  counter: 120, 
+  counter: 5, 
   //countdown function
   countdown: function() {
     // decrease the amount of time by 1
@@ -81,7 +103,7 @@ var game = {
     function startGame() {
 
       // alert the user how much time they have for trivia game
-        alert("You have 2 minutes to answer all the questions. Good Luck!");
+        //alert("You have 2 minutes to answer all the questions. Good Luck!");
       
         // TIMER ---------------------------------------------------------------------------------
         // start the timer 
@@ -104,7 +126,7 @@ var game = {
           for(var j = 0; j < myQuestions[i].answers.length; j++){
 
             // append the answers and give them a radio button to collect an input(or answer) from the user
-            $("#smwrapper").append("<input type='radio' name='question-"+i+"' value='"+myQuestions[i].answers[j]+"'>" +myQuestions[i].answers[j])
+            $("#smwrapper").append("<input class='radiobtn' type='radio' name='question-"+i+"' value='"+myQuestions[i].answers[j]+"'>" +myQuestions[i].answers[j])
             };
         } //end for loop 
 
@@ -115,44 +137,18 @@ var game = {
   // FUNCTION OF DONE GAME doneGame
   function doneGame() { 
 
-    $.each($("input[name='question-0']:checked"), function(){
-      if ($(this).val()==myQuestions[0].correctAnswer) {
-        game.correct++;
-      } else {
-        game.incorrect++;
-      }
-    });
+    var inputs = $("input:checked")
 
-    $.each($("input[name='question-1']:checked"), function(){
-      if ($(this).val()==myQuestions[1].correctAnswer) {
+    for (var i = 0; i < inputs.length; i++) {
+      if ($(inputs[i]).val() === myQuestions[i].correctAnswer) {
         game.correct++;
-      } else {
-        game.incorrect++;
-      }
-    });
-    $.each($("input[name='question-2']:checked"), function(){
-      if ($(this).val()==myQuestions[2].correctAnswer) {
-        game.correct++;
-      } else {
-        game.incorrect++;
-      }
-    });
-    $.each($("input[name='question-3']:checked"), function(){
-      if ($(this).val()==myQuestions[3].correctAnswer) {
-        game.correct++;
-      } else {
-        game.incorrect++;
-      }
-    });
-    $.each($("input[name='question-4']:checked"), function(){
-      if ($(this).val()==myQuestions[4].correctAnswer) {
-        game.correct++;
-      } else {
-        game.incorrect++;
-      }
-    });
+        } else {
+          game.incorrect++;
+        }
+    };
 
 
+    // VARIABLES -------------------------------------------------------------
     var totalQuestions = myQuestions.length;
     var totalincorrect = game.incorrect;
     var totalcorrect = game.correct;
@@ -161,6 +157,7 @@ var game = {
   
     result( x = unansweredTotal );
 
+    // ----------------------------------------------------------------------
     function result(x) {
       clearInterval(timer);
       $("#smwrapper h2").remove();
