@@ -13,6 +13,15 @@ h1 {
     margin-bottom: 10px;
 }
 
+h4 {
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    color: red;
+}
+
 button {
     color: black;
     margin: 10px;
@@ -31,4 +40,8 @@ button {
     margin: 10px; 
     text-align: center;
 
+}
+
+.radiobtn {
+    margin: 10px;
 }
